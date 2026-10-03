@@ -5,7 +5,9 @@ export async function searchEditais(filters: FilterParams, customApiKey?: string
   const currentDate = new Date().toISOString().split('T')[0];
   
   // Check if API key is provided
-  const apiKey = customApiKey || (typeof process !== 'undefined' && process.env?.GEMINI_API_KEY) || '';
+  const apiKey = customApiKey || 
+    (typeof import.meta !== 'undefined' && (import.meta as any).env?.VITE_GEMINI_API_KEY) || 
+    '';
 
   if (apiKey && apiKey !== 'MY_GEMINI_API_KEY' && apiKey.length > 10) {
     try {
@@ -22,7 +24,7 @@ export async function searchEditais(filters: FilterParams, customApiKey?: string
   return getVerifiedCatalogResult(filters, currentDate);
 }
 
-async function executeLiveGeminiSearch(apiKey: String, filters: FilterParams, currentDate: string): Promise<SearchResult | null> {
+async function executeLiveGeminiSearch(apiKey: string, filters: FilterParams, currentDate: string): Promise<SearchResult | null> {
   const tema = filters.area_tematica !== "Todas as Áreas" 
     ? `${filters.area_tematica} ${filters.termo_busca}`.trim() 
     : (filters.termo_busca || "Saneamento, Infraestrutura, Saúde, Educação, Tecnologia e Inovação");
