@@ -1,0 +1,6 @@
+{
+  "name": "CaptaEditais",
+  "description": "Rastreador e analista de editais e captação de recursos públicos no Brasil (Transferegov, BNDES, FINEP, Ministérios e FAPs)",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
